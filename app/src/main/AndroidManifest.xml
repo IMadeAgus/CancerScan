@@ -16,6 +16,9 @@
             android:name=".view.InputActivity"
             android:exported="false" />
         <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
             android:name=".view.ResultActivity"
             android:exported="false" />
         <activity
