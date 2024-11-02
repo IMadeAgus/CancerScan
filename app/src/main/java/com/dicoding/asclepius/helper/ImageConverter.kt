@@ -8,8 +8,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 object ImageConverter {
-
-
+    
         fun uriToByteArray(contentResolver: ContentResolver, uri: Uri?, maxWidth: Int = 1000, maxHeight: Int = 1000): ByteArray? {
             return try {
                 val inputStream: InputStream? = uri?.let { contentResolver.openInputStream(it) }

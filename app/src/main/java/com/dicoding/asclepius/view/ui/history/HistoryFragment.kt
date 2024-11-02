@@ -36,8 +36,8 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         historyAdapter = HistoryAdapter()
+        setupRecyclerView()
         viewModel.getHistory().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
@@ -56,10 +56,12 @@ class HistoryFragment : Fragment() {
                     ).show()
                 }
             }
-            binding.rvHistory.apply {
-                layoutManager = this@HistoryFragment.layoutManager
-                adapter = historyAdapter
-            }
+        }
+    }
+    private fun setupRecyclerView() {
+        binding.rvHistory.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = historyAdapter
         }
     }
 

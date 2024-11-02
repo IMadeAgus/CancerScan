@@ -15,7 +15,7 @@ import com.dicoding.asclepius.helper.ImageConverter
 import java.text.NumberFormat
 
 class HistoryAdapter(
-    private var isLoading: Boolean = true
+
 ) : ListAdapter<HistoryEntity, HistoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -24,10 +24,8 @@ class HistoryAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        if (!isLoading) {
             val history = getItem(position)
             holder.bind(history)
-        }
     }
 
 
@@ -36,10 +34,10 @@ class HistoryAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(history: HistoryEntity) {
             binding.tvLabel.text = history.label
-            binding.tvPercentage.text =
+            binding.tvResult.text =
                 NumberFormat.getPercentInstance().format(history.presentase).trim()
             Glide.with(binding.root.context)
-                .load(history.image.let { ImageConverter.byteArrayToBitmap(it) })
+                .load(history.image?.let { ImageConverter.byteArrayToBitmap(it) })
                 .transform(RoundedCorners(10))
                 .placeholder(R.drawable.ic_place_holder)
                 .into(binding.img)
