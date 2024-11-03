@@ -1,7 +1,6 @@
 package com.dicoding.asclepius.view.ui.news
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.asclepius.data.Repository
 import com.dicoding.asclepius.data.remote.response.ArticlesItem

@@ -3,12 +3,10 @@ package com.dicoding.asclepius.helper
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.media.Image
 import android.net.Uri
 import android.os.SystemClock
 import android.util.Log
 import com.dicoding.asclepius.R
-import org.checkerframework.checker.units.qual.C
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.common.ops.CastOp
 import org.tensorflow.lite.support.image.ImageProcessor
@@ -20,9 +18,9 @@ import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
 
 class ImageClassifierHelper(
-    var threshold: Float = 0.1f,
-    var maxResult: Int = 3,
-    val modelName: String = "cancer_classification.tflite",
+    private var threshold: Float = 0.1f,
+    private var maxResult: Int = 3,
+    private val modelName: String = "cancer_classification.tflite",
     val context: Context,
     val classifierListener: ClassifierListener?
 ) {

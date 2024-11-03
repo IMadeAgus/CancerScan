@@ -28,7 +28,8 @@ class ResultActivity : AppCompatActivity() {
         val confidencePercent = NumberFormat.getPercentInstance().format(confidence).trim()
         val imageUri = intent.getParcelableExtra<Uri>(EXTRA_IMAGE_URI)
 
-        binding.resultText.text = "$label: $confidencePercent"
+        binding.label.text = label
+        binding.resultText.text = confidencePercent
         binding.resultImage.setImageURI(imageUri)
 
         val history = HistoryEntity(

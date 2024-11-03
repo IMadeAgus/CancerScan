@@ -4,16 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.asclepius.BuildConfig
-import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.FragmentNewsBinding
 import com.dicoding.asclepius.helper.Result
-import com.dicoding.asclepius.view.ui.history.HistoryAdapter
 
 class NewsFragment : Fragment() {
 

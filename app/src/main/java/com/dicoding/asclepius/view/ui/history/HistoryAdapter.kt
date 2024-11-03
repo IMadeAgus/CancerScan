@@ -14,9 +14,7 @@ import com.dicoding.asclepius.databinding.ItemHistoryBinding
 import com.dicoding.asclepius.helper.ImageConverter
 import java.text.NumberFormat
 
-class HistoryAdapter(
-
-) : ListAdapter<HistoryEntity, HistoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class HistoryAdapter: ListAdapter<HistoryEntity, HistoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -10,7 +10,6 @@
     <string name="result_image">Gambar Hasil</string>
     <string name="result">Hasil Analisis</string>
     <string name="label">Label Analisis</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
     <string name="title_news">News</string>
@@ -22,5 +21,6 @@
     <string name="img_news">Gambar Berita</string>
     <string name="error">Terjadi Kesalahan : </string>
     <string name="no_internet_connection">Tidak ada koneksi internet</string>
+    <string name="no_history">Tidak ada data history</string>
     <string name="retry">Coba Lagi</string>
 </resources>
