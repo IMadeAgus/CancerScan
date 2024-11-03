@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.dicoding.asclepius.databinding.FragmentHomeBinding
 import com.dicoding.asclepius.helper.ImageClassifierHelper
 import com.dicoding.asclepius.view.ui.activity.ResultActivity
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var imageClassifierHelper: ImageClassifierHelper
     private var currentImageUri: Uri? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +42,11 @@ class HomeFragment : Fragment() {
 
         initializeImageClassifier()
         setupClickListeners()
+
+        viewModel.currentImageUri.observe(viewLifecycleOwner) { uri ->
+            currentImageUri = uri
+            showImage()  // Display the image if URI is not null
+        }
     }
 
     private fun initializeImageClassifier() {
@@ -134,6 +141,7 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
+          viewModel.setImageUri(uri)
             launchUCrop(uri)
         } else {
             Log.d("Photo Picker", "No media selected")

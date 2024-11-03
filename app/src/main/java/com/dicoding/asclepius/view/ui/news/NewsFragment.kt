@@ -35,7 +35,7 @@ class NewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         newsAdapter = NewsAdapter()
         setupRecyclerView()
-        viewModel.getNews().observe(viewLifecycleOwner) { result ->
+        viewModel.newsData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     showLoading(true)

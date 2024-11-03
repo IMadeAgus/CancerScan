@@ -8,7 +8,7 @@ import com.dicoding.asclepius.helper.Result
 
 class NewsViewModel(private val repository: Repository) : ViewModel() {
 
-    fun getNews(): LiveData<Result<List<ArticlesItem>>> {
-        return repository.getNews()
+    val newsData: LiveData<Result<List<ArticlesItem>>> by lazy {
+        repository.getNews()
     }
 }
