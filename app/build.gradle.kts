@@ -16,7 +16,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "APP_ID", "\"afd09e726d79f0a321a4daacee6fb26a\"")
+        buildConfigField("String", "APP_ID", "\"da75561de52045dfb384ac224d3616fd\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

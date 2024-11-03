@@ -1,16 +1,18 @@
 package com.dicoding.asclepius.data.remote.retrofit
 
+import com.dicoding.asclepius.data.remote.response.NewsResponse
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("everything")
+    @GET("top-headlines")
     suspend fun getNews(
         @Query("q") query: String = "cancer",
-        @Query("sortBy") sortBy: String = "relevancy",
-        @Query("page") page: Int = 50,
-        @Query("pageSize") pageSize: Int = 1,
-        @Query("apiKey") apiKey: String = "da75561de52045dfb384ac224d3616fd"
-    )
+        @Query("category") category: String = "health",
+        @Query("language") language: String = "en",
+        @Query("apiKey") apiKey: String
+    ): Response<NewsResponse>
 }

@@ -18,7 +18,6 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var historyAdapter: HistoryAdapter
-    private lateinit var layoutManager: LinearLayoutManager
 
     private val viewModel by viewModels<HistoryViewModel> {
         HistoryViewModelFactory.getInstance(requireActivity())
@@ -42,13 +41,22 @@ class HistoryFragment : Fragment() {
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.noDataLayout.visibility = View.GONE
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    historyAdapter.submitList(result.data)
+                    if (result.data.isEmpty()) {
+                        binding.noDataLayout.visibility = View.VISIBLE
+                        binding.rvHistory.visibility = View.GONE
+                    } else {
+                        binding.noDataLayout.visibility = View.GONE
+                        binding.rvHistory.visibility = View.VISIBLE
+                        historyAdapter.submitList(result.data)
+                    }
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
+                    binding.noDataLayout.visibility = View.VISIBLE
                     Toast.makeText(
                         context,
                         getString(R.string.error) + result.error,

@@ -1,12 +1,10 @@
-package com.dicoding.asclepius.view
+package com.dicoding.asclepius.view.ui.activity
 
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.dicoding.asclepius.R
 import com.dicoding.asclepius.data.local.entity.HistoryEntity
 import com.dicoding.asclepius.databinding.ActivityResultBinding
 import com.dicoding.asclepius.helper.ImageConverter

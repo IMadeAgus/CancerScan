@@ -10,6 +10,6 @@ object Injection {
         val apiService = ApiConfig.getApiService()
         val database = HistoryDatabase.getInstance(context)
         val dao = database.historyDao()
-        return Repository.getInstance(apiService,dao)
+        return Repository.getInstance(apiService, dao, context)
     }
 }

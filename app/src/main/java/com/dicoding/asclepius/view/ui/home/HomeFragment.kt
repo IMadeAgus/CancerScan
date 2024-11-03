@@ -14,7 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.dicoding.asclepius.databinding.FragmentHomeBinding
 import com.dicoding.asclepius.helper.ImageClassifierHelper
-import com.dicoding.asclepius.view.ResultActivity
+import com.dicoding.asclepius.view.ui.activity.ResultActivity
 import com.yalantis.ucrop.UCrop
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.io.File
