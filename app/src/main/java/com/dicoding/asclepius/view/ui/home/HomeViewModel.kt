@@ -10,7 +10,7 @@ class HomeViewModel : ViewModel(){
     private val _currentImageUri = MutableLiveData<Uri?>()
     val currentImageUri: LiveData<Uri?> = _currentImageUri
 
-    fun setImageUri(uri: Uri) {
+    fun setImageUri(uri: Uri?) {
         _currentImageUri.value = uri
     }
 }

@@ -13,6 +13,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.FragmentHomeBinding
 import com.dicoding.asclepius.helper.ImageClassifierHelper
 import com.dicoding.asclepius.view.ui.activity.ResultActivity
@@ -39,13 +40,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initializeImageClassifier()
         setupClickListeners()
 
         viewModel.currentImageUri.observe(viewLifecycleOwner) { uri ->
             currentImageUri = uri
-            showImage()  // Display the image if URI is not null
+            if (uri == null) {
+                binding.previewImageView.setImageResource(R.drawable.ic_place_holder)
+            } else {
+                binding.previewImageView.setImageURI(uri)
+            }
         }
     }
 
@@ -70,6 +74,7 @@ class HomeFragment : Fragment() {
                                     confidence = result.score,
                                     imageUri = currentImageUri
                                 )
+                                clearImage()
                             } else {
                                 showToast("Tidak dapat mengklasifikasikan gambar")
                             }
@@ -101,7 +106,9 @@ class HomeFragment : Fragment() {
             binding.previewImageView.setImageURI(it)
         }
     }
-
+    private fun clearImage() {
+        viewModel.setImageUri(null)
+    }
     private fun launchUCrop(sourceUri: Uri) {
         val destinationUri = Uri.fromFile(
             File(requireContext().cacheDir, "cropped_${System.currentTimeMillis()}.jpg")
@@ -123,6 +130,8 @@ class HomeFragment : Fragment() {
             showToast("Crop error: ${cropError?.message}")
         }
     }
+
+
 
     private fun moveToResult(label: String, confidence: Float, imageUri: Uri?) {
         val intent = Intent(requireContext(), ResultActivity::class.java).apply {

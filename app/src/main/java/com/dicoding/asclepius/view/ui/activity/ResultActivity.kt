@@ -1,6 +1,7 @@
 package com.dicoding.asclepius.view.ui.activity
 
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -18,7 +19,6 @@ class ResultActivity : AppCompatActivity() {
     private val viewModel by viewModels<HistoryViewModel> {
         HistoryViewModelFactory.getInstance(application)
     }
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
@@ -26,7 +26,12 @@ class ResultActivity : AppCompatActivity() {
         val label = intent.getStringExtra(EXTRA_LABEL)
         val confidence = intent.getFloatExtra(EXTRA_CONFIDENCE, 0.0f)
         val confidencePercent = NumberFormat.getPercentInstance().format(confidence).trim()
-        val imageUri = intent.getParcelableExtra<Uri>(EXTRA_IMAGE_URI)
+        val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(EXTRA_IMAGE_URI, Uri::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra(EXTRA_IMAGE_URI)
+        }
 
         binding.label.text = label
         binding.resultText.text = confidencePercent
@@ -41,9 +46,7 @@ class ResultActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.setHistory(history)
         }
-
     }
-
     companion object {
         const val EXTRA_LABEL = "label"
         const val EXTRA_CONFIDENCE = "confidence"
